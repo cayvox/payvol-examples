@@ -1,0 +1,135 @@
+{
+  "provenance": {
+    "what": "SYNTHETIC token-standard ledger updates for the CBTC example offline tests.",
+    "isNot": "Not a capture. No value was copied from any ledger, wallet or registry. Parties are placeholders, contract ids are invented, and the template ids name packages that do not exist.",
+    "builtFrom": "Public Canton Token Standard interfaces at canton-network/splice@fcdadce: TransferInstructionV1.daml (Transfer, TransferInstructionView, TransferInstruction_Accept/_Reject/_Withdraw, TransferInstructionResult), HoldingV1.daml (HoldingView), MetadataV1.daml; the JSON Ledger API update-by-id envelope."
+  },
+  "update": {
+    "update": {
+      "Transaction": {
+        "value": {
+          "updateId": "syn-offer",
+          "commandId": "",
+          "workflowId": "",
+          "effectiveAt": "2026-10-18T00:00:00Z",
+          "offset": 1,
+          "synchronizerId": "synthetic-sync::1220aabbcc",
+          "events": [
+            {
+              "CreatedEvent": {
+                "offset": 1,
+                "nodeId": 1,
+                "contractId": "00syn-payer-locked",
+                "templateId": "synthetic-registry-package:Synthetic.Registry:Holding",
+                "createArgument": {},
+                "interfaceViews": [
+                  {
+                    "interfaceId": "synthetic-iface-package:Splice.Api.Token.HoldingV1:Holding",
+                    "viewStatus": {
+                      "code": 0,
+                      "message": "",
+                      "details": []
+                    },
+                    "viewValue": {
+                      "owner": "payer::1220aabbcc",
+                      "instrumentId": {
+                        "admin": "registrar::1220aabbcc",
+                        "id": "SYNTH"
+                      },
+                      "amount": "0.0100000000",
+                      "lock": {
+                        "holders": ["registrar::1220aabbcc"],
+                        "expiresAt": null,
+                        "expiresAfter": null,
+                        "context": null
+                      },
+                      "meta": {
+                        "values": {}
+                      }
+                    }
+                  }
+                ],
+                "witnessParties": ["payee::1220aabbcc"],
+                "signatories": ["registrar::1220aabbcc", "payer::1220aabbcc"],
+                "observers": ["payee::1220aabbcc"],
+                "packageName": "synthetic-registry"
+              }
+            },
+            {
+              "CreatedEvent": {
+                "offset": 1,
+                "nodeId": 1,
+                "contractId": "00syn-instruction",
+                "templateId": "synthetic-registry-package:Synthetic.Registry:Instruction",
+                "createArgument": {
+                  "transfer": {
+                    "sender": "payer::1220aabbcc",
+                    "receiver": "payee::1220aabbcc",
+                    "amount": "0.0100000000",
+                    "instrumentId": {
+                      "admin": "registrar::1220aabbcc",
+                      "id": "SYNTH"
+                    },
+                    "requestedAt": "2026-10-18T00:00:00Z",
+                    "executeBefore": "2026-10-19T00:00:00Z",
+                    "inputHoldingCids": ["00syn-payer-holding"],
+                    "meta": {
+                      "values": {
+                        "splice.lfdecentralizedtrust.org/reason": "INV-SYNTH-0002",
+                        "payvol.xyz/request-digest": "39c9c565de4531c404ae47e2567e2fc9318e091328a4d2829fff23603e6317b8",
+                        "payvol.xyz/profile": "0.1"
+                      }
+                    }
+                  }
+                },
+                "interfaceViews": [
+                  {
+                    "interfaceId": "synthetic-iface-package:Splice.Api.Token.TransferInstructionV1:TransferInstruction",
+                    "viewStatus": {
+                      "code": 0,
+                      "message": "",
+                      "details": []
+                    },
+                    "viewValue": {
+                      "originalInstructionCid": null,
+                      "transfer": {
+                        "sender": "payer::1220aabbcc",
+                        "receiver": "payee::1220aabbcc",
+                        "amount": "0.0100000000",
+                        "instrumentId": {
+                          "admin": "registrar::1220aabbcc",
+                          "id": "SYNTH"
+                        },
+                        "requestedAt": "2026-10-18T00:00:00Z",
+                        "executeBefore": "2026-10-19T00:00:00Z",
+                        "inputHoldingCids": ["00syn-payer-holding"],
+                        "meta": {
+                          "values": {
+                            "splice.lfdecentralizedtrust.org/reason": "INV-SYNTH-0002",
+                            "payvol.xyz/request-digest": "39c9c565de4531c404ae47e2567e2fc9318e091328a4d2829fff23603e6317b8",
+                            "payvol.xyz/profile": "0.1"
+                          }
+                        }
+                      },
+                      "status": {
+                        "tag": "TransferPendingReceiverAcceptance",
+                        "value": {}
+                      },
+                      "meta": {
+                        "values": {}
+                      }
+                    }
+                  }
+                ],
+                "witnessParties": ["payee::1220aabbcc"],
+                "signatories": ["registrar::1220aabbcc", "payer::1220aabbcc"],
+                "observers": ["payee::1220aabbcc"],
+                "packageName": "synthetic-registry"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

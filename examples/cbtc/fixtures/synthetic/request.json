@@ -1,0 +1,17 @@
+{
+  "provenance": {
+    "what": "SYNTHETIC token-standard ledger updates for the CBTC example offline tests.",
+    "isNot": "Not a capture. No value was copied from any ledger, wallet or registry. Parties are placeholders, contract ids are invented, and the template ids name packages that do not exist.",
+    "builtFrom": "Public Canton Token Standard interfaces at canton-network/splice@fcdadce: TransferInstructionV1.daml (Transfer, TransferInstructionView, TransferInstruction_Accept/_Reject/_Withdraw, TransferInstructionResult), HoldingV1.daml (HoldingView), MetadataV1.daml; the JSON Ledger API update-by-id envelope."
+  },
+  "request": {
+    "version": "0.1",
+    "type": "transfer",
+    "recipient": "payee::1220aabbcc",
+    "instrument": "registrar::1220aabbcc/SYNTH",
+    "amount": "0.0100000000",
+    "reference": "INV-SYNTH-0002",
+    "expiry": "2027-01-01T00:00:00Z"
+  },
+  "digest": "39c9c565de4531c404ae47e2567e2fc9318e091328a4d2829fff23603e6317b8"
+}

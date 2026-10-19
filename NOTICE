@@ -1,0 +1,16 @@
+Payvol examples
+Copyright 2026 Cayvox Labs
+
+The code and text in this repository are licensed under the Apache License, Version 2.0 (LICENSE).
+
+Third-party marks
+The diagrams in docs/diagrams embed the following marks, unmodified. They are not licensed under
+the Apache License, and no right to use them is granted by this repository.
+  - The CBTC mark is BitSafe's, from https://bitsafe.finance/brand-kit, used with BitSafe's
+    permission.
+  - The Canton Network mark belongs to its owner and is used with permission.
+  - The Payvol marks are trademarks of Cayvox Labs.
+
+Fonts
+The SVG diagrams embed subsets of Bricolage Grotesque, Inter and JetBrains Mono, each licensed
+under the SIL Open Font License, Version 1.1. The licence texts are in docs/diagrams/fonts/.

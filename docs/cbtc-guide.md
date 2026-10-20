@@ -61,8 +61,8 @@ shortened party ID is the most common reason a payment cannot be made.
 - **Loop** has paid a CBTC request through Payvol on DevNet.
 - **Console** and **Nightly** implement the same transfer call in their PartyLayer adapters, and
   have not been tried with CBTC.
-- **Walley** received that payment, and Match read it through Walley. Walley's adapter has no
-  transfer call, so Walley cannot send a payment through Payvol today.
+- **Walley** received that payment, and Match read it through Walley. Sending from Walley
+  through Payvol is coming soon.
 
 ## 3. Get test CBTC
 
@@ -173,6 +173,11 @@ check the party ID, not the name.
 Press **Connect a wallet to pay**, choose your wallet, and approve the transfer in it. The wallet builds
 the transfer with the registry and shows it to you again. Payvol never sees your key.
 
+<!-- Loop approval screenshot: save it as docs/images/loop-approval.png with party IDs blurred,
+     then replace this comment with the line below.
+![Loop's approval screen for the 0.01 CBTC transfer to INV-0001, with party IDs blurred](images/loop-approval.png)
+-->
+
 **Expected result:** Pay reads the transfer back and says **Paid.** when it completed, or **Offered,
 and nothing has moved yet.** when it is waiting for the payee to accept. On this path, the request's
 reference reaches the ledger as the Token Standard's `reason`, and nothing else from Payvol does: the
@@ -268,10 +273,12 @@ prints four of these checks.*
 | CBTC's admin party and registry per network, and that the admin and id can change | BitSafe, [Instrument ID Management](https://docs.bitsafe.finance/developers/instrument-id-management.md); the registry's own `/registry/metadata/v1/info` and `/instruments` answers, committed in [`examples/cbtc/fixtures/registry`](../examples/cbtc/fixtures/registry) |
 | CBTC has 10 decimal places | The same registry answers, 2026-10-18 |
 | The faucet, DevNet and TestNet only; the receiving participant needs the DA Utility Registry | BitSafe, [Integrations](https://docs.bitsafe.finance/cbtc/guides/integrations.md) |
+| CBTC is backed 1:1 by Bitcoin | BitSafe, [Minting CBTC](https://docs.bitsafe.finance/product-suite/assets/cbtc/operational-guides/minting-cbtc.md) ("Each CBTC is backed 1:1 by Bitcoin held in decentralized custody") and [Proof of Reserve](https://docs.bitsafe.finance/cbtc/concepts-and-reference/proof-of-reserve.md) |
+| Canton Coin, stablecoins such as USDCx, and CBTC are Token Standard assets | The [Splice token standard](https://github.com/canton-network/splice/tree/main/token-standard) ("Amulet implements the token standard"); Canton, [USDCx support](https://docs.canton.network/integrations/wallets-and-exchanges/usdcx-support.md); the CBTC registry answers above |
 | Taproot (P2TR) deposit addresses, unique to a deposit account | BitSafe, [Minting CBTC](https://docs.bitsafe.finance/product-suite/assets/cbtc/operational-guides/minting-cbtc.md) |
 | The Attestor Network, FROST, minting, the Minter credential, redeeming | BitSafe, [Attestor Network and FROST](https://docs.bitsafe.finance/cbtc/concepts-and-reference/attestor-network-and-frost.md), [Mint CBTC](https://docs.bitsafe.finance/cbtc/guides/mint-cbtc.md), [Redeem CBTC](https://docs.bitsafe.finance/cbtc/guides/redeem-cbtc.md) |
 | Offers, acceptance, and transfers that complete without acceptance | BitSafe, [Transfer and receive CBTC](https://docs.bitsafe.finance/cbtc/guides/transfer-and-receive-cbtc.md); the Token Standard's `TransferInstructionV1` (results Pending, Completed, Failed), in the [Splice repository](https://github.com/canton-network/splice) |
-| Which wallets carry the transfer call, and that they carry only a memo | The published PartyLayer adapters: `@partylayer/adapter-loop` 0.5.1, `@partylayer/adapter-console` 0.4.0 and `@partylayer/adapter-nightly` 0.3.0 implement `requestTransfer` with a memo only; Walley comes through `@partylayer/sdk` 0.19.0's announce adapter, which has none |
+| Which wallets carry the transfer call, and that they carry only a memo | The published PartyLayer adapters: `@partylayer/adapter-loop` 0.5.1, `@partylayer/adapter-console` 0.4.0 and `@partylayer/adapter-nightly` 0.3.0 implement `requestTransfer` with a memo only |
 | Loop paid CBTC through Payvol; that payment completed in one step and matched | A DevNet payment on 2026-10-19, read on the payee's own ledger view |
 | Loop's new wallet address | `@fivenorth/loop-sdk` 0.15.0 on npm; [fivenorth-io/loop-sdk](https://github.com/fivenorth-io/loop-sdk) release v0.15.0 |
 | What the SDK path puts on the ledger | `examples/cbtc/src/transfer.ts` |
